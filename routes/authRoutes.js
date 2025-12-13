@@ -24,6 +24,7 @@ router.post('/reset-password/:token', resetPasswordValidator, validator, authCon
 
 // Protected routes
 router.use(protect); // All routes after this middleware require authentication
+router.use(authLimiter); // Apply rate limiting to protected routes as well
 router.get('/me', authController.getMe);
 router.post('/update-password', resetPasswordValidator, validator, authController.updatePassword);
 router.post('/logout', authController.logout);
